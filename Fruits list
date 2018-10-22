@@ -1,0 +1,40 @@
+import React, { Component } from 'react';
+import './List.css';
+ class List extends Component {
+  state ={
+        fruits:[
+           "apple",
+           "avacada",
+            "orange",
+            "pine apple",
+            "mango",
+        ],
+        items: []
+  }
+filterhandler = (event) =>{
+	var updatedList = this.state.fruits;
+      updatedList = updatedList.filter(function(item){
+        return item.toLowerCase().search(
+          event.target.value.toLowerCase()) !== -1;
+      });
+      this.setState({items: updatedList});
+    }
+  render() {
+    return (
+        <div className="List">
+        <h1>fruits list</h1>
+        <label htmlFor="fruits" ></label>
+        <input name="fruits" type='text' onChange={(e) => this.filterhandler(e)}></input>
+        <ul>
+        {
+          this.state.items.map(function(item) {
+            return <li key={item}>{item}</li>
+          })
+         }
+        </ul>
+
+        </div>
+      )
+ }
+}
+ export default List;
